@@ -25,11 +25,11 @@
  *     H               L             Medium Current       
  *     L               L             High Current         
  *
-*  -----			         x -------              -------                  -----
+*  -----                     x -------              -------                  -----
 *  | p |---- PHASE (A)	              )            (           PHASE (B) ----| P | 
-*  | B |		               coil A )            ( coil B                  | B |
-*  | L |---- INPUT0 I0A		          )            (           INPUT I0B ----| L |
-*  |   |				              )            (                         |   |
+*  | B |		       coil A )            ( coil B                  | B |
+*  | L |---- INPUT0 I0A               )            (           INPUT I0B ----| L |
+*  |   |                              )            (                         |   |
 *  | 1 |---- INPUT1 I1A	     y -------              -------    INPUT I1B ----| 2 |  
 *  -----	                                                                 -----
 
