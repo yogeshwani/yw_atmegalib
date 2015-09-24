@@ -1,15 +1,15 @@
-/************************************************************************
+#ifndef _LCD_16X2_H_
+#define _LCD_16X2_H_
+/**
+ * @file lcd16x2.h
  * Name : lcd16x2.h 
  * 
  * Header file for the lcd16x2.c file
  *  
  * Contains the pin configurations, enums macros and function definitions 
  * the Lcd library function  
- ************************************************************************/
-#ifndef _LCD_16X2_H_
-#define _LCD_16X2_H_
 
-/* USAGE NOTE FOR HEADER FILES IN THE PROJECTS :
+   USAGE NOTE FOR HEADER FILES IN THE PROJECTS :
    to use the extra .h files :
    open Project->Lcd_TEST properties page and in the Directories option for compiler 
    add the path to the directory where the respective files are stored

@@ -1,24 +1,22 @@
-/************************************************************************
- * Name : adc.h 
+/**
+ * @file adc.h
  * 
- * Header file for the lcd16x2.c file
+ * @brief Header file for the adc.c file
  *  
- * Contains the pin configurations, enums macros and function definitions 
- * the Lcd library function  
+ * Contains the pin configurations, enums macros and function definitions for the adc   
  *
- ************************************************************************/
- /******* 
-    Important things to know about the adc 
-    REGISTERS :
- 		ADMUX   
-  ------------------------------------------------------------
-  | REFS1 | REFSO | ADLAR | MUX4 | MUX3 | MUX2 | MUX1 | MUXO | 
-  ------------------------------------------------------------
-	REFSl:0 Bit 7:6 Reference Selection Bits
-	                These bits select the reference voltage for the ADC.
-	
-	ADLAR Bit 5 ADC Left Adjust Results
-				This bit dictates either the left bits or the right bits of the result registers ADCH:ADCL
+ *
+ *   Important things to know about the adc 
+ *   REGISTERS :
+ *    ADMUX   
+ * ------------------------------------------------------------
+ * | REFS1 | REFSO | ADLAR | MUX4 | MUX3 | MUX2 | MUX1 | MUXO | 
+ * ------------------------------------------------------------
+ * REFSl:0 Bit 7:6 Reference Selection Bits
+ *               These bits select the reference voltage for the ADC.
+ *	
+ * ADLAR Bit 5 ADC Left Adjust Results
+ *				This bit dictates either the left bits or the right bits of the result registers ADCH:ADCL
 				that are used to store the result. If we write a one to ADLAR, the result will be left
 				adjusted; otherwise, the result is right adjusted.
 	MUX4:0 Bit 4:0 Analog Channel and Gain Selection Bits
@@ -30,6 +28,7 @@
                These registers store the 10 bit digital value after the conversion from the ADC 
 			   (ADLAR would decide the left/right adjustment. The upper or lower 6 bits out of 16 
 			    are unused and hence ADLAR would decide which ones be unused )
+
 ADCSRA 	
 --------------------------------------------------------------			
 | ADEN | ADSC |  ADATE | ADIF | ADIE | ADPS2 | ADPS1 | ADPSO |
@@ -53,7 +52,7 @@ ADIE Bit 3 ADC Interrupt Enable
 ADPS2:0 Bit 2:0 ADC Prescaler Select Bits
 	These bits determine the division factor between the XTAL frequency and the input
 	clock to the ADC.
- ***********/
+*/
 
 
 #ifndef _ADC_H_
@@ -96,19 +95,23 @@ typedef enum reference_voltage
     #define AdcEnableInterrupt() ADCSRA |= (1<<ADIE);
 #endif
 
-/* Initialize the ADC 
- *
+/** Initialize the ADC 
+ * setups the adc based ont eh values provided as parameters to this function
  */
 void AdcInit(REFERENCE_VOLTAGE ref_volts, ADC_CLK_PRESCALE adc_prescale,
              bool left_justified, bool interrut_enabled/*,auto_trigger_enable*/);
 
 
-/* Read the value after the conversion from the ADC 
- * takes the channel from which to read (0-7)
- * the value passed in as bit wise anded with the max no of channel
- * to make sure it doesnt exceed the no of channels 
+/** @brief  Read the value after the conversion from the ADC 
+ * 
+ * Takes the channel from which to read (0-7), the value passed in as bit wise
+ * anded with the max no of channel to make sure it doesnt exceed the no of 
+ * channels 
+ * @param channel The channel number of the ADC to read from 
+ * @param true_value The true_value of teh adc read rather than the 8 bit value 
+ * @return uint16_t (16bit) value from the analog to digital conversion
  */
-uint16_t ReadAdc(uint8_t channel,bool true_value);
+uint16_t ReadAdc(uint8_t channel, bool true_value);
 
 #endif 
 

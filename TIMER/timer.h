@@ -1,6 +1,8 @@
-/* header file for the timer system for the avr chips 
-
-NOTES:
+/**
+    @file timer.h
+    @brief Header file for the timer system for the avr chips 
+    @author Yogesh Wani
+ * NOTES:
 the file contains various macros and function definitions for the timer subsystem.
 the timer files will have to deal with setting up the timer in the mode requested, 
 the prescale factor as well as seeing if the interrupts are being required or not. 
@@ -51,10 +53,10 @@ ALL ENUMS CAN BE PREFIXED WITHE THE IDENTIFIER TIMER0 WHEN IMPLEMTATION STARTS F
 /*-------
  * ENUMS
  --------*/
-/* enum for the timer used .. consider moving this to #defines for memory constraints */
+/** enum for the timer used .. consider moving this to #defines for memory constraints */
 typedef enum timer
 {
-    TIMER_0_8_BITS,
+    TIMER_0_8_BITS,/**TIMER 0 ENUM = 0*/
     TIMER_1_16_BITS,
     TIMER_2_8_BITS
 }TIMER;
@@ -111,23 +113,21 @@ typedef enum interrupt_type
     TIMER_2_8_BITS_OUTPUT_COMPARE_MATCH = 0x80
 }INTERRUPT_TYPE;	
 
-/*------------
+/*
  * STRUCTURES
- -------------*/
-/*the user needs to populate this structure and then just call TimerInit in the main routine which will just initialize
-the timer based on the information in the structure. However the timer will not be started until the user wishes and hence he needs to call start timer
+-*/
+/*! the user needs to populate this structure and then just call TimerInit in the main routine which will just initialize the timer based on the information in the structure. However the timer will not be started until the user wishes and hence he needs to call start timer
 with the time specified int eh function macro which will then set the clock and start the timer based on the information provided in this structure
 */
-
 typedef struct timer_stp
 {
-	TIMER timer; /* identifies which timer to use */
-	bool activated; /* set to true if you wish to use the timer else false*/
-	TIMER_MODES timer_mode; /* mode in which the timer should operate ..pwm,ctc,icmp etc etc..*/
-	OC_PIN_MODE OC_mode; /* set the behavior for the OC pin if connected */
-	CPU_CLK_PRESCALE cpu_clk_prescale; /* CPU clock to be used */
-	bool interrupt_enabled; /* whether interrupts should be set for this timer*/
-	INTERRUPT_TYPE type_of_interrupt;
+	TIMER timer; /**< identifies which timer to use */
+	bool activated; /**< set to true if you wish to use the timer else false*/
+	TIMER_MODES timer_mode; /**< mode in which the timer should operate ..pwm,ctc,icmp etc etc..*/
+	OC_PIN_MODE OC_mode; /**< set the behavior for the OC pin if connected */
+	CPU_CLK_PRESCALE cpu_clk_prescale; /**< CPU clock to be used */
+	bool interrupt_enabled; /**< whether interrupts should be set for this timer*/
+	INTERRUPT_TYPE type_of_interrupt; /**< Type fo fhte interrupt */
 }TIMER_SETUP;
 
 TIMER_SETUP timer_setup[NO_OF_TIMERS];
@@ -184,7 +184,18 @@ TIMER_SETUP timer_setup[NO_OF_TIMERS];
 /*----------------------
  * FUNCTION DECLARATION 
  -----------------------*/
+/**
+ This function initializes timer on atmega
+ @param void accepts nothing
+ @return returnds nothing 
+*/
 void TimerInit();
+
+/**
+ This function setsup the timer for teh timer passed in 
+ @param timer the timer to setup
+ @return returnds nothing 
+*/
 void TimerSetupAll(TIMER timer);
 
 #endif
