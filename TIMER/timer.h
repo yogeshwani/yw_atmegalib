@@ -3,11 +3,7 @@
     @brief Header file for the timer system for the avr chips 
     @author Yogesh Wani
  * NOTES:
-the file contains various macros and function definitions for the timer subsystem.
-the timer files will have to deal with setting up the timer in the mode requested, 
-the prescale factor as well as seeing if the interrupts are being required or not. 
-the timer will be set and finished in the timer init function adn will be started 
-when a call is being made to teh stat timer function/macro . 
+The file contains various macros and function definitions for the timer subsystem. The timer files will have to deal with setting up the timer in the mode requested, the prescale factor as well as seeing if the interrupts are being required or not. The timer will be set and finished in the timer init function adn will be started when a call is being made to teh stat timer function/macro . 
 This subsystem should also take care of using the timer specified .. so if timer 1 
 is asked for use it if timer 2 then use that etc etc.. 
 Check differences between starting timers in different modes and also the 
